@@ -1,0 +1,57 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="buy.css"/>
+
+{% extends "layout_buyer.html" %}
+
+{% block title %}
+    Message
+{% endblock %}
+
+{% block main %}
+    <form action="{{ '/new_message/' + username }}" method="post">
+        <section class="testimonial py-5" id="testimonial">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-4 py-5 bg-primary text-white text-center ">
+                        <div class=" ">
+                            <div class="card-body">
+                                <img src="/static/envelope.svg" style="width:30%">
+                                <h2 class="py-3">Send a Message</h2>
+                                <p>Send a message using this form to negotiate your storage swap. They should get back to
+                                you shortly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 py-5 border">
+                        <h4 class="pb-4">Please fill with your details to <a href= "{{ '/profile/' + username }}"> {{ username }}</a></h4>
+                        <form>
+                            <label>Type your message here:</label>
+                            <div class="form row">
+                                <div class="form-group col-md-12">
+                                    <textarea id="message" name="message" placeholder="Message" cols="60" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <button class="btn btn-primary" type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+   <script>
+        document.querySelector('form').onsubmit = function(run) {
+            if (!document.querySelector("input[name='message']").value) {
+                alert('You must provide a message!');
+                return false;
+            }
+        };
+    </script>
+
+{% endblock %}

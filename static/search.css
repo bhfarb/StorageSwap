@@ -1,0 +1,36 @@
+
+ul.card-toolbar {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+    ul.card-toolbar > li {
+        float: left;
+        display: list-item;
+        list-style: none;
+        margin: 0px;
+        /*margin: 0 5px 10px 0;*/
+    }
+
+.btn-default {
+    background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%);
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #dbdbdb;
+    text-shadow: 0 1px 0 #fff;
+    border-color: #ccc;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+}
+
+.thin-card-header {
+    padding: 0.5rem 1.25rem;
+}
+
+.card {
+    border-radius: 0.5rem;
+}

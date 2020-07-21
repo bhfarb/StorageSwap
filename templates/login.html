@@ -1,0 +1,37 @@
+{% extends "layout_seller.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <center>
+    <div class="jumbotron">
+      <h1 class="display-3">Welcome. Let's get storage swapping!</h1>
+      <br>
+      <p class="lead">Please login below.</p>
+      <hr class="my-4">
+    <div class="container">
+        <center>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+        </center>
+    </div>
+    <br>
+    <p>New here? Please register as a buyer or seller in the upper right.</p>
+    </div>
+    </center>
+    <style>
+        body{
+            background-image:url("/static/background.jpg");
+        }
+    </style>
+
+{% endblock %}

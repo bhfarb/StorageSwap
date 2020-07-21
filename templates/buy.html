@@ -1,0 +1,113 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="buy.css"/>
+
+{% extends "layout_buyer.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <section class="testimonial py-5" id="testimonial">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-4 py-5 bg-primary text-white text-center ">
+                        <div class=" ">
+                            <div class="card-body">
+                                <img src="/static/registration_bg.svg" style="width:30%">
+                                <h2 class="py-3">Buyer Registration</h2>
+                                <p>Thank you for registering. This information will be on your user profile. Now let's find a storage swap!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 py-5 border">
+                        <h4 class="pb-4">Please fill with your details</h4>
+                        <form>
+                            <label>Account information:</label>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <input id="name" name="name" placeholder="Full Name" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                                </div>
+                            </div>
+                             <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <input id="password" name="password" placeholder="Password" class="form-control" type="password">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="password" name="confirmation" class="form-control" id="confirmation" placeholder="Retype Password">
+                                </div>
+                            </div>
+                            <label>Contact Information:</label>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input id="phone" name="phone" placeholder="Mobile No." class="form-control" type="text">
+                                </div>
+                            </div>
+                            <label>Anything you'd like to share on your profile?</label>
+                            <div class="form row">
+                                <div class="form-group col-md-12">
+                                    <textarea id="intro" name="intro" placeholder="Tell us about yourself!" cols="60" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <button class="btn btn-primary" type="submit">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+   <script>
+        document.querySelector('form').onsubmit = function(run) {
+            if (!document.querySelector("input[name='username']").value) {
+                alert('You must provide a username!');
+                return false;
+            }
+            if (!document.querySelector("input[name='password']").value) {
+                alert('You must provide a password!');
+                return false;
+            }
+            if (!document.querySelector("input[name='confirmation']").value) {
+                alert('You must retype your password!');
+                return false;
+            }
+            if (!document.querySelector("input[name='intro']").value) {
+                alert('You must include some information about yourself!');
+                return false;
+            }
+            if (!document.querySelector("input[name='email']").value) {
+                alert('You must include your email address!');
+                return false;
+            }
+            if (!document.querySelector("input[name='phone']").value) {
+                alert('You must include your phone number!');
+                return false;
+            }
+            run.preventDefault();
+            $.get('/check', {username: document.querySelector("input[name=username]").value}, function(data){
+                if (data)
+                {
+                    document.querySelector('form').submit();
+                }
+                else
+                {
+                    alert("Username is taken.");
+                }
+            });
+        };
+    </script>
+
+{% endblock %}

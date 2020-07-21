@@ -1,0 +1,43 @@
+{% extends "layout_buyer.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block main %}
+    <form action="/results" method="post">
+        <p>Your inputted location: {{ loc_1 }}</p>
+
+        <h3> Search results (ordered by price low to high): </h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Distance from you</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Max # of Boxes</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for listing in final_listings %}
+                <tr>
+                <td><a href= "{{ '/profile/' + listing['username']|string }}">{{ listing["username"] }}</a></td>
+                <td><a href= "{{ '/listing/' + listing['listing_id']|string }}">{{ listing['street']+ ', ' + listing['city']+', ' + listing['state']+', ' + listing['zip'] }}</a></td>
+                <td>{{ listing["distance"] }}</td>
+                <td>{{ listing["price"] | usd }}</td>
+                <td>{{ listing["space"] }}</td>
+                <td>{{ listing["start"] | format_date}}</td>
+                <td>{{ listing["end"] | format_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if not final_listings %}
+            Sorry, we don't have any listings matching those parameters.
+        {% endif %}
+    </form>
+{% endblock %}

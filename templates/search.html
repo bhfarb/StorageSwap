@@ -1,0 +1,115 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="buy.css"/>
+
+{% extends "layout_buyer.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+    <form action="/search" method="post">
+        <section class="testimonial py-5" id="testimonial">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-4 py-5 bg-primary text-white text-center ">
+                        <div class=" ">
+                            <div class="card-body">
+                                <img src="/static/warehouse.svg" style="width:30%">
+                                <h2 class="py-3">Search</h2>
+                                <p>We will search within a range you give of your address to find a place that works for your dates and number of boxes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 py-5 border">
+                        <h4 class="pb-4">Please fill with details for your storage swap</h4>
+                        <form>
+                            <label>Please enter street address in format (123 Happy St.):</label>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <input id="street" name="street" placeholder="Street Address" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" name="city" class="form-control" id="city" placeholder="City">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <input id="state" name="state" placeholder="State" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" name="zip" class="form-control" id="zip" placeholder="Zip Code">
+                                </div>
+                            </div>
+                            <label>Please enter range in miles and number of 18"x18"x24" boxes:</label>
+                            <div class="form row">
+                                <div class="form-group col-md-6">
+                                    <input class="form-control" name="miles" placeholder="Range (miles)" type="text">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input class="form-control" name="space" placeholder="Number of boxes" type="text">
+                                </div>
+                            </div>
+                            <label>Please enter date range:</label>
+                            <div class="form row">
+                                <div class="form-group col-md-6">
+                                    Start Date:
+                                    <input autocomplete="off" autofocus class="form-control" name="start" type="date">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    End Date:
+                                    <input autocomplete="off" autofocus class="form-control" name="end" type="date">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+   <script>
+        document.querySelector('form').onsubmit = function(run) {
+            if (!document.querySelector("input[name='street']").value) {
+                alert('You must provide street address!');
+                return false;
+            }
+            if (!document.querySelector("input[name='city']").value) {
+                alert('You must provide city!');
+                return false;
+            }
+            if (!document.querySelector("input[name='state']").value) {
+                alert('You must provide state!');
+                return false;
+            }
+            if (!document.querySelector("input[name='zip']").value) {
+                alert('You must provide zip code!');
+                return false;
+            }
+            if (!document.querySelector("input[name='miles']").value) {
+                alert('You must provide range in miles!');
+                return false;
+            }
+            if (!document.querySelector("input[name='space']").value) {
+                alert('You must provide number of boxes!');
+                return false;
+            }
+            if (!document.querySelector("input[name='start']").value) {
+                alert('You must provide start date!');
+                return false;
+            }
+            if (!document.querySelector("input[name='end']").value) {
+                alert('You must provide end date!');
+                return false;
+            }
+        };
+    </script>
+
+{% endblock %}

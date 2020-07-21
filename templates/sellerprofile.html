@@ -1,0 +1,112 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="profilestyles.css"/>
+
+{% extends "layout_seller.html" %}
+
+{% block title %}
+    {{ user_info.username }}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+                                <div class="userData ml-3">
+                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{ user_info.username }}</a></h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{ user_info.name }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Description</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{ user_info.intro }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Address</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{ user_info.street }}, {{ user_info.city }}, {{ user_info.state }}, {{ user_info.zip }}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Email</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{ user_info.email }}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Phone Number</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{ user_info.phone }}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Listings</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <ol>
+                                                    {% for listing in listings %}
+                                                        <li><a href="{{ '/listing/' + listing['listing_id']|string }}">
+                                                            {{ listing.space }} boxes, {{ listing.start|format_date }} to
+                                                            {{ listing.end|format_date }}</a></li>
+                                                    {% endfor %}
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

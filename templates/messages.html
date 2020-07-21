@@ -1,0 +1,54 @@
+{% extends "layout_buyer.html" %}
+
+{% block title %}
+    Messages
+{% endblock %}
+
+{% block main %}
+    <form action="/messages" method="post">
+        <h1> Your messages </h1>
+        <h3> Received </h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">From</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Message</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in received %}
+                <tr>
+                <td><a href= "{{ '/profile/' + item.sender|string }}">{{ item.sender }}</a></td>
+                <td>{{ item.time }}</td>
+                <td>{{ item.message }}</td>
+                <td><a class="btn btn-primary" href="{{ '/new_message/' + item.sender }}" role="button">Reply</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3> Sent </h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">To</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Message</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in sent %}
+                <tr>
+                <td><a href= "{{ '/profile/' + item.receiver|string }}">{{ item.receiver }}</a></td>
+                <td>{{ item.time }}</td>
+                <td>{{ item.message }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </form>
+{% endblock %}

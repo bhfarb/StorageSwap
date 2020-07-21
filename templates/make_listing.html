@@ -1,0 +1,101 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="buy.css"/>
+
+{% extends "layout_seller.html" %}
+
+{% block title %}
+    Make a Listing
+{% endblock %}
+
+{% block main %}
+    <form action="/make" method="post">
+        <section class="testimonial py-5" id="testimonial">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-4 py-5 bg-primary text-white text-center ">
+                        <div class=" ">
+                            <div class="card-body">
+                                <img src="/static/warehouse.svg" style="width:30%">
+                                <h2 class="py-3">Make a Listing</h2>
+                                <p>Your listing will be posted in the marketplace to make a storage swap at the address you registered with. You will get an email from any interested buyers.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 py-5 border">
+                        <h4 class="pb-4">Please fill with details for your listing.</h4>
+                        <form>
+                            <label>Number of 18"x18"x24" boxes that would fit in the space you have available:</label>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input class="form-control" name="space" placeholder="Space" type="text">
+                                </div>
+                            </div>
+                            <label>Price per box:</label>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input autocomplete="off" autofocus class="form-control" name="price" placeholder="Price" type="text">
+                                </div>
+                            </div>
+                            <label>Type of storage setting:</label>
+                            <div class="form row">
+                                <div class="form-group col-md-6">
+                                    <select name = "setting" class="form-control">
+                                        <option disabled selected value="">Choose...</option>
+                                        <option value="Apartment">Apartment</option>
+                                        <option value="House">House</option>
+                                        <option value="Garage">Garage</option>
+                                        <option value="Dorm">Dorm</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <label>Please enter date range:</label>
+                            <div class="form row">
+                                <div class="form-group col-md-6">
+                                    Start Date:
+                                    <input autocomplete="off" autofocus class="form-control" name="start" type="date">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    End Date:
+                                    <input autocomplete="off" autofocus class="form-control" name="end" type="date">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <button class="btn btn-primary" type="submit">Post</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+    <script>
+        document.querySelector('form').onsubmit = function(run) {
+            if (!document.querySelector("input[name='space']").value) {
+                alert('You must provide how many boxes would fit in the available space!');
+                return false;
+            }
+            if (!document.querySelector("input[name='price']").value) {
+                alert('You must provide a price!');
+                return false;
+            }
+            if (!document.querySelector("input[name='start']").value) {
+                alert('You must provide start date!');
+                return false;
+            }
+            if (!document.querySelector("input[name='end']").value) {
+                alert('You must provide end date!');
+                return false;
+            }
+            if (!document.querySelector('select').value) {
+                alert('You must provide your setting!');
+                return false;
+            }
+        };
+    </script>
+
+{% endblock %}

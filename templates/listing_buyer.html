@@ -1,0 +1,20 @@
+{% extends 'layout_buyer.html' %}
+
+{% block title %}
+    {{ Listing }}
+{% endblock %}
+
+{% block main %}
+
+<h2>{{ listing_info.street }}</h2>
+<div class="container">
+    <p>Username: <a href= "{{ '/profile/' + listing_info.username }}">{{ listing_info.username }}<a></a></p>
+    <p>Address: {{ listing_info.street }}, {{ listing_info.city }}, {{ listing_info.state }}, {{ listing_info.zip }}</p>
+    <p>Setting: {{ listing_info.setting }}</p>
+    <p>Space Available: {{ listing_info.space }}</p>
+    <p>Price: {{ listing_info.price }}</p>
+    <p>Dates: {{ listing_info.start }} until {{ listing_info.end }}</p>
+</div>
+<a class="btn btn-primary" href="{{ '/new_message/' + listing_info.username }}" role="button">Message the seller</a>
+
+{% endblock %}

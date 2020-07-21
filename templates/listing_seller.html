@@ -1,0 +1,19 @@
+{% extends 'layout_seller.html' %}
+
+{% block title %}
+    {{ Listing }}
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <h1>Listing Information</h1>
+    <p>Username: <a href= "{{ '/profile/' + listing_info.username }}">{{ listing_info.username }}<a></a></p>
+    <p>Address: {{ listing_info.street }}, {{ listing_info.city }}, {{ listing_info.state }}, {{ listing_info.zip }}</p>
+    <p>Setting: {{ listing_info.setting }}</p>
+    <p>Space Available: {{ listing_info.space }}</p>
+    <p>Price: {{ listing_info.price |usd }}</p>
+    <p>Dates: {{ listing_info.start |format_date }} until {{ listing_info.end |format_date }}</p>
+</div>
+
+{% endblock %}
